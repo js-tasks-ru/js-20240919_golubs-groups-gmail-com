@@ -4,7 +4,9 @@
  * @returns {object | undefined} - returns new object or undefined if nothing did't pass
  */
 export function invertObj(obj) {
-    return Object.fromEntries(
-        Object.entries(obj).map((entry) => entry.reverse())
-      );
+  const result = {}
+  Object.entries(myObj).forEach(([key, value]) => {
+    result[value] = key;
+  })
+  return(result);
 }
