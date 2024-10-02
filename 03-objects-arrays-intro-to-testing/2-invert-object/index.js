@@ -5,7 +5,7 @@
  */
 export function invertObj(obj) {
   const entries = Object.entries(obj);
-  const result = {}
+  const result = {};
  for (const [key, value] of entries) {
    result[value] = pair[key];
  }
