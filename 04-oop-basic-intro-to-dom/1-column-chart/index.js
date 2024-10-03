@@ -42,7 +42,7 @@ createLinkTemplate() {
 
     createChartTemplate() {
 return this.getColumnProps(this.data).map(({ value, percent }) => (
-   ` <div style="--value: ${value}" data-tooltip="${percent}"></div>`
+   `<div style="--value: ${value}" data-tooltip="${percent}"></div>`
 )).join('');
     }
 
@@ -58,8 +58,7 @@ createTemplate() {
         ${this.formatHeading(this.value)}
         </div>
         <div data-element="body" class="column-chart__chart">
-       ${this.createChartTemplate()}
-          
+       ${this.createChartTemplate()}         
         </div>
       </div>
     </div>
