@@ -1,7 +1,6 @@
 export default class ColumnChart {
 
    element;
-   //data;
    ChartHeight = 50;
 
 constructor(props = {}) {
@@ -12,6 +11,7 @@ constructor(props = {}) {
         link = '',
         formatHeading = (value) => value,
     } = props;
+
    this.data = data;
    this.label = label;
    this.value = value;
@@ -20,12 +20,12 @@ constructor(props = {}) {
 
    this.element = this.createElement();
 }
-createLinkTemplate(){
-    if (this.link) {
 
+createLinkTemplate() {
+    if (this.link) {
         return `<a class="column-chart__link" href="${this.link}">View all</a>`;
     }
-    return'';
+    return '';
     }
 
     getColumnProps(data) {
@@ -41,14 +41,14 @@ createLinkTemplate(){
 }
 
     createChartTemplate() {
-return this.getColumnProps(this.data).map(({ value, percent }) =>(
+return this.getColumnProps(this.data).map(({ value, percent }) => (
    ` <div style="--value: ${value}" data-tooltip="${percent}"></div>`
-) ).join('');
+)).join('');
     }
 
 createTemplate() {
     return `
-    <div class="column-chart " style="--chart-height: 50">
+    <div class="column-chart" style="--chart-height: 50">
       <div class="column-chart__title">
       ${this.label}
       ${this.createLinkTemplate()}
@@ -70,19 +70,22 @@ createElement() {
 
      element.innerHTML = this.createTemplate();
 
-const firstElementChild = element.firstElementChild;
+const firstElementChild = element.firstElementChild
 
 firstElementChild.classList.add('column-chart_loading');
 
     return firstElementChild;
 }
+
 update(newData) {
     this.data = newData;
     this.element.innerHTML = this.createTemplate();
 }
+
 remove() {
     this.element.remove();
 }
+
 destroy() {
     this.remove();
 }
