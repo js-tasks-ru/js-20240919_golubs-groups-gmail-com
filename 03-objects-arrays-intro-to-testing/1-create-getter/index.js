@@ -5,4 +5,18 @@
  */
 export function createGetter(path) {
 
+  return function(obj) {
+    const arrPath = path.split('.');
+    let result = obj;
+    for (const arr of arrPath) {
+      if(result.hasOwnProperty(arr)){
+         result = result[arr];
+      }
+      else
+      {
+        return;
+      }
+    }
+    return result;
+  };
 }
