@@ -1,7 +1,5 @@
 export default class NotificationMessage {
-
     static activeNotification;
-    
     constructor(message = "Success", params = {}){
         this.message = message;
         this.duration = params.duration || 2000;
@@ -43,4 +41,3 @@ export default class NotificationMessage {
         this.remove();
     }
     }
-    
