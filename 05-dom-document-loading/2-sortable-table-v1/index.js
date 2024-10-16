@@ -102,10 +102,10 @@ createRowTemplate() {
 
       sortedData.sort((a, b) => {
           if (param === 'asc') {
-              return compare(a, b, sortType);
+              return compare(a, b, sortType, collator);
           }
           else{
-              return compare(b, a, sortType);
+              return compare(b, a, sortType, collator);
           }
       });
 
