@@ -86,14 +86,16 @@ createRowTemplate() {
     this.sortParams = { field, param };
 
     const sortedData = [ ...this.data ];
-    const sortType = this.headerConfig.find(item => item.id === field).sortType;
+    //const sortType = this.headerConfig.find(item => item.id === field).sortType;
     const locales = ["ru", "en"];
 const paramValue = param == 'asc' ? 1 : -1;
     const compare = sortedData.sort((a, b)=> {
-        if (sortType === 'string') {
+//if (sortType === 'string') {
+    if (typeof a[field] === 'string') {
             return paramValue * a[field].localeCompare(b[field],locales);
         }
-        if (sortType === 'number') {
+     //   if (sortType === 'number') {
+        if (typeof a[field] === 'number') {
             return paramValue * (a[field] - b[field]);
         }
     });
