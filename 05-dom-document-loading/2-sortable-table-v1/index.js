@@ -83,35 +83,23 @@ createRowTemplate() {
   }
 
   sort(field = 'title', param = 'asc') {
-      this.sortParams = { field, param };
+    this.sortParams = { field, param };
 
-      const sortedData = [ ...this.data ];
-      const sortType = this.headerConfig.find(item => item.id === field).sortType;
-      const locales = ["ru", "en"];
-      const options = {sensitivity: "variant", caseFirst: "upper"};
-      const collator =  new Intl.Collator(locales,options);
+    const sortedData = [ ...this.data ];
+    const sortType = this.headerConfig.find(item => item.id === field).sortType;
+    const locales = ["ru", "en"];
+const paramValue = param == 'asc' ? 1 : -1;
+    const compare = sortedData.sort((a, b)=> {
+        if (sortType === 'string') {
+            return paramValue * a[field].localeCompare(b[field],locales);
+        }
+        if (sortType === 'number') {
+            return paramValue * (a[field] - b[field]);
+        }
+    });
 
-      const compare = (a, b, sortType) => {
-          if (sortType === 'string') {
-              return a[field].localeCompare(b[field], collator);
-          }
-          if (sortType === 'number') {
-              return a[field] - b[field];
-          }
-      };
-
-      sortedData.sort((a, b) => {
-          if (param === 'asc') {
-              return compare(a, b, sortType, collator);
-          }
-          else{
-              return compare(b, a, sortType, collator);
-          }
-      });
-
-      this.update(sortedData);
-  }
-
+    this.update(sortedData);
+}
   update(data = []) {
           this.data = data;
           this.subElements.body.innerHTML = this.createRowTemplate();
